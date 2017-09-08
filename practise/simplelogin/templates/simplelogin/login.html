@@ -1,0 +1,26 @@
+{% extends 'simplelogin/base.html' %}
+
+{% block content %}
+<div class="container">
+	<div clas="row">
+	<div class="col-md-4 col-md-offset-4">
+	<div class="jumbotron" style="background-color:#99ddff">
+
+	<form  method="POST" action="/simplelogin/my_view/" enctype="multipart/form-data">
+		{% csrf_token %}
+		<h5 style="color:green">{{reg_success_text}}</h5>
+		Username:<br>
+		<input class="form-control" type="text" name="username"><br>
+		Password:<br>
+		<input class="form-control" type="password" name="password"><br><br>
+		<input type="submit" value="SUBMIT" class="btn btn-success"><br>
+	</form>
+	
+	<a class="btn btn-link" href="/simplelogin/reg_simple/">
+		Register here
+	</a>
+	</div>
+	</div>
+	</div>
+	</div>
+{% endblock %}

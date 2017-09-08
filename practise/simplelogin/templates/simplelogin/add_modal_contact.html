@@ -1,0 +1,49 @@
+{% load staticfiles %}
+
+                    <!--Add Contact Modal Form-->
+<div id='add_contact_data' class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!--Modal content-->
+            <div class="modal-content">                        
+                
+                <div class="modal-header">
+                    <a href="#" data-dismiss="modal" class="class pull-right"><span class="glyphicon glyphicon-remove"></span></a>
+                    <h3 class="modal-title">Add Contact</h3>
+                </div>                      
+            
+                <div class="modal-body">
+                <form method="POST" action="/simplelogin/add_contact/" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-6">
+                            <img id="contact_image_preview_output" src= {% static "simplelogin/img/default_user.png" %} class="img-thumbnail" style="height:128px;width:128px;">
+                            <input type="file" name="contact_image" id="imageUpload2" accept="image/*"  onchange="loadFile(event)" class="hidden">
+                            <label for="imageUpload2" class="btn btn-primary glyphicon glyphicon-folder-open"></label>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <input class="form-control" type="text" name="contact_name" placeholder="contact name"><br>
+                            <input class="form-control" type="text" name="contact_number" placeholder="contact number"><br>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input class="btn btn-success" type="submit" value="save"><br>
+                                </div>
+                                <div class="col-md-6">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>          
+                                </div>
+                            </div>
+                        </div>      
+                    </div>
+                </form>
+            </div>
+        </div> 
+    </div>
+</div>
+
+                            <!--Modal form end-->
+<script>
+  var loadFile = function(event) {
+    var output = document.getElementById('contact_image_preview_output');
+    output.src = URL.createObjectURL(event.target.files[0]);
+  };
+</script>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% load staticfiles %}
+        <title>Contacts</title>
+        <link href= {% static "simplelogin/css/bootstrap.min.css" %} rel="stylesheet" type="text/css">
+    </head>
+    <body >
+        <div class="container">
+
+            <!--Navigation bar-->
+			<nav class="navbar navbar-light bg-light" style="background-color:#99ddff;" >
+          		<a class="navbar-brand" href="#" style="color:white";>Hello {{ user.get_full_name }}</a>
+        		<button type="button" class="btn btn-default navbar-btn" data-toggle="modal" data-target="#add_contact_data" >Add Contact</button>
+                {% include 'simplelogin/add_modal_contact.html' %}                
+                <div class="navbar-form navbar-right">
+                    <a  class="btn btn-link" style="margin-right: 10%; " href="/simplelogin/logout_simple/" >logout</a>
+        		</div>
+      		</nav>
+
+
+            <!-- Body -->
+            <div class="row">
+
+                <!-- Add Contact -->
+                <div class="col-md-4">
+                    {% include 'simplelogin/add_contact.html' %}
+                </div>
+
+                <!-- Data loading -->
+                <div class="col-md-8">
+                    <div class="jumbotron" style="background-color:#99ddff;">        
+                        <div class="row">
+                	        {% if object_list %}
+                            {% for contact_details in object_list %}
+                            <div class="col-md-3" style="padding-bottom: 3%;">
+                                <div class="img-thumbnail" style="overflow: hidden;">
+                                    {% if contact_details.contact_image %}
+                                    <img src="{{contact_details.contact_image.url}}" class="img-thumbnail" style="height:128px;width:128px;">
+                                    {% else %}
+                                    <img src= {% static "simplelogin/img/default_user.png" %} class="img-thumbnail" style="height:128px;width:128px;">
+                                    {% endif %}
+
+                                    <div class="caption text-center">
+                                        <div style="padding:5px 0px;"></div>
+                                        <a>{{ contact_details.contact_name}}</a>
+                                        <h4>{{contact_details.contact_number}}</h4>
+                                    </div>
+
+                                    <div class="btn-ground text-center">
+                                        <div class="col-md-6">
+                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#edit_contact_data{{contact_details.id}}" ><span class="glyphicon glyphicon-pencil"></span></button>    
+                                    {% include 'simplelogin/modal_edit_contact.html' %}
+                                    </div>
+                                        <div class="col-md-6">
+                                            <form method="post" action="/simplelogin/delete_contact/" >
+                                                {% csrf_token %}
+                                                <input name="id_contact" value="{{contact_details.id}}"class="hide">
+                                                <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-trash"></span></button>                             
+                                                <div style="padding:10px 0px;"></div>
+                                            </form>
+                                        </div>
+                                        <div style="padding:10px 0px;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                            {% else %}
+                    	        <h3>No contacts saved</h3>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src= {% static "simplelogin/js/bootstrap.min.js" %}></script>
+
+    </body>
+</html>

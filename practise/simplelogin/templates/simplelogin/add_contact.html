@@ -1,0 +1,19 @@
+{% load staticfiles %}
+                        <!--Add Contact-->
+<div class="jumbotron" style="background-color:#99ddff;">
+    <div class="row">
+        <img src= {% static "simplelogin/img/networking.jpg" %} alt="Contacts" style="width:270px;height:240px;">
+        <div>
+            <form method="POST" action="/simplelogin/add_contact/" enctype="multipart/form-data">
+                {% csrf_token %}
+                <h3>Add Contact:</h3>
+                <input class="form-control" type="text" name="contact_name" placeholder="contact name"><br>
+                <input class="form-control" type="text" name="contact_number" placeholder="contact number"><br>
+                <input type="file" name="contact_image" id="imageUpload1" class="btn btn-primary" accept="image/*" >
+                <div style="padding:10px 0px;"></div>
+                <input class="btn btn-success" type="submit" value="save"><br>
+            </form>
+        </div>
+    </div>
+</div>
+                
