@@ -10,12 +10,21 @@
 
             <!--Navigation bar-->
 			<nav class="navbar navbar-light bg-light" style="background-color:#99ddff;" >
-          		<a class="navbar-brand" href="#" style="color:white";>Hello {{ user.get_full_name }}</a>
-        		<button type="button" class="btn btn-default navbar-btn" data-toggle="modal" data-target="#add_contact_data" >Add Contact</button>
+          		
+                <a class="navbar-brand" href="#" style="color:white";>Hello {{ user.get_full_name }}</a>
+        		
+                <button type="button" class="btn btn-default navbar-btn" data-toggle="modal" data-target="#add_contact_data" >Add Contact</button>
+
+                <button type="button" class="btn btn-default navbar-btn" data-toggle="modal" data-target="#send_message" ><span class="glyphicon glyphicon-edit "></span></button>
+
                 {% include 'simplelogin/add_modal_contact.html' %}                
+                
+                {% include 'simplelogin/modal_send_message.html' %}                
+                
                 <div class="navbar-form navbar-right">
                     <a  class="btn btn-link" style="margin-right: 10%; " href="/simplelogin/logout_simple/" >logout</a>
         		</div>
+
       		</nav>
 
 

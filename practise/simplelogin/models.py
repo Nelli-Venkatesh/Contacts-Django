@@ -10,3 +10,7 @@ class contact_details(models.Model):
 
 	def __str__(self):
 		return self.contact_name
+class contact_messages(models.Model):
+	user = models.ForeignKey(User)
+	reciever_contact_name = models.ForeignKey(contact_details,related_name = 'recieve_contact_name')
+	message_data = models.CharField(max_length = 140)
