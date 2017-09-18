@@ -1,33 +1,7 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        {% load staticfiles %}
-        <title>Contacts</title>
-        <link href= {% static "simplelogin/css/bootstrap.min.css" %} rel="stylesheet" type="text/css">
-    </head>
-    <body >
-        <div class="container">
-
-            <!--Navigation bar-->
-			<nav class="navbar navbar-light bg-light" style="background-color:#99ddff;" >
-          		
-                <a class="navbar-brand" href="#" style="color:white";>Hello {{ user.get_full_name }}</a>
-        		
-                <button type="button" class="btn btn-default navbar-btn" data-toggle="modal" data-target="#add_contact_data" >Add Contact</button>
-
-                <button type="button" class="btn btn-default navbar-btn" data-toggle="modal" data-target="#send_message" ><span class="glyphicon glyphicon-edit "></span></button>
-
-                {% include 'simplelogin/add_modal_contact.html' %}                
-                
-                {% include 'simplelogin/modal_send_message.html' %}                
-                
-                <div class="navbar-form navbar-right">
-                    <a  class="btn btn-link" style="margin-right: 10%; " href="/simplelogin/logout_simple/" >logout</a>
-        		</div>
-
-      		</nav>
-
-
+{% extends 'simplelogin/base.html' %}
+{% block content %}
+    
+    {% load staticfiles %}
             <!-- Body -->
             <div class="row">
 
@@ -40,7 +14,7 @@
                 <div class="col-md-8">
                     <div class="jumbotron" style="background-color:#99ddff;">        
                         <div class="row">
-                	        {% if object_list %}
+                            {% if object_list %}
                             {% for contact_details in object_list %}
                             <div class="col-md-3" style="padding-bottom: 3%;">
                                 <div class="img-thumbnail" style="overflow: hidden;">
@@ -75,18 +49,10 @@
                             </div>
                             {% endfor %}
                             {% else %}
-                    	        <h3>No contacts saved</h3>
+                                <h3>No contacts saved</h3>
                             {% endif %}
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-
-        <!-- Include all compiled plugins (below), or include individual files as needed -->
-        <script src= {% static "simplelogin/js/bootstrap.min.js" %}></script>
-
-    </body>
-</html>
+{% endblock %}

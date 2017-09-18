@@ -1,13 +1,43 @@
 <!DOCTYPE html>
 <html>
-<head>
-<title>Hello World</title>
-	{% load static %}
-	<link href= {% static "css/bootstrap.min.css" %} rel="stylesheet" type="text/css">
-	
-</head>
-<body>
-	{% block content %}
-	{% endblock %}
-</body>
+    <head>
+        {% load staticfiles %}
+        <title>Contacts</title>
+        <link href= {% static "simplelogin/css/bootstrap.min.css" %} rel="stylesheet" type="text/css">
+    </head>
+    <body >
+
+        <div class="container">
+
+            <!--Navigation bar-->
+			<nav class="navbar navbar-light bg-light" style="background-color:#99ddff;" >
+          		<a class="navbar-brand" href="#" style="color:white";>Hello {{ user.get_full_name }}</a>
+        		<button type="button" class="btn btn-default navbar-btn" data-toggle="modal" data-target="#add_contact_data" >Add Contact</button>
+                
+                <button type="button" class="btn btn-default navbar-btn" data-toggle="modal" data-target="#send_message" >Message</button>
+                
+                {% include 'simplelogin/add_modal_contact.html' %}                
+                {% include 'simplelogin/modal_send_message.html' %}                
+                
+                <div class="navbar-form navbar-right">
+                    <a  class="btn btn-link" style="margin-right: 10%; " href="/simplelogin/user_profile/" >User Profile</a>
+                </div>
+
+                <div class="navbar-form navbar-right">
+                    <a  class="btn btn-link" style="margin-right: 10%; " href="/simplelogin/logout_simple/" >logout</a>
+        		</div>
+      		</nav>
+
+            {% block content %}
+            {% endblock %}
+
+
+        </div>
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src= {% static "simplelogin/js/bootstrap.min.js" %}></script>
+
+    </body>
 </html>

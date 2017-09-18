@@ -15,7 +15,11 @@
                     {% csrf_token %}
                     <div class="row">
                         <div class="col-md-6">
+                            {% if contact_details.contact_image %}
                             <img id="contact_image_preview_output_{{contact_details.id}}" src="{{contact_details.contact_image.url}}" class="img-thumbnail" style="height:128px;width:128px;">
+                            {% else %}
+                            <img src= {% static "simplelogin/img/default_user.png" %} class="img-thumbnail" style="height:128px;width:128px;">
+                            {% endif %}
                             <input type="file" name="contact_image" id="imageUpload{{contact_details.id}}" accept="image/*" onchange="loadFile_edit(event)"  class="hide">
                             <label for="imageUpload{{contact_details.id}}" class="btn btn-primary glyphicon glyphicon-folder-open"></label>
                         </div>

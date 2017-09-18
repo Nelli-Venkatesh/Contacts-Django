@@ -10,4 +10,5 @@ urlpatterns = [
     url(r'^delete_contact/$',views.delete_contact,name="delete_contact"),
     url(r'^reg_simple/$',views.reg_simple,name="reg_simple"),
     url(r'^logout_simple/$', views.logout_simple, name='logout_simple'),
+    url(r'^user_profile/$',views.user_profile,name='user_profile')
     ]

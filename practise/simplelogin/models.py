@@ -10,7 +10,23 @@ class contact_details(models.Model):
 
 	def __str__(self):
 		return self.contact_name
-class contact_messages(models.Model):
+
+
+class UserProfile(models.Model):
 	user = models.ForeignKey(User)
-	reciever_contact_name = models.ForeignKey(contact_details,related_name = 'recieve_contact_name')
+	email = models.EmailField(blank = False)
+	mobile_number = models.IntegerField(default=0)
+
+	def __str__(self):
+		return self.email
+
+class messages(models.Model):
+	user = models.ForeignKey(User)
+	reciever = models.ForeignKey(User,related_name='reciever')
 	message_data = models.CharField(max_length = 140)
+
+	def __str__(self):
+		return self.message_data
+
+
+

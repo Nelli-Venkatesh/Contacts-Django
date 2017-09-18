@@ -80,3 +80,6 @@ def my_view(request):
 def logout_simple(request):
 	logout(request)
 	return render(request, 'simplelogin/login.html')
+
+def user_profile(request):
+	return render(request,'simplelogin/user_profile.html')
