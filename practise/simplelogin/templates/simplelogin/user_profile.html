@@ -5,7 +5,9 @@
 			<div class="jumbotron col-md-6 col-offset-3">
 			<form action="/simplelogin/edit_user_profile/" method="POST">	
 				{% csrf_token %}
-				
+
+				<input name="id_userprofile" value="{{user.userprofile.id}}"class="hide">
+                                                
 				<div class="col-md-4">First Name :</div>
 				<div class="col-md-8">
 					<input class="form-control" type="text" name="first_name"  value="{{user.userprofile.first_name}}"><br>

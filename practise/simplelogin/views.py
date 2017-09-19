@@ -52,13 +52,13 @@ def edit_contact(request):
 @login_required(login_url='/simplelogin/login_simple/')
 def edit_user_profile(request):
 	if request.method == 'POST':
-		# user=request.user
-		# UserProfile.first_name = request.POST['first_name']
-		# UserProfile.last_name = request.POST['last_name']
-		# UserProfile.email = request.POST['email']
-		# UserProfile.mobile_number = request.POST['mobile_number']
-
-		#UserProfile.save()
+		profile = UserProfile.objects.get(pk=request.POST['id_userprofile'])
+		profile.first_name = request.POST['first_name']
+		profile.last_name = request.POST['last_name']
+		profile.email = request.POST['email']
+		profile.mobile_number = request.POST['mobile_number']
+		#print(request.POST['first_name'])
+		profile.save()
 		return redirect('/simplelogin/user_profile')
 	return redirect('/simplelogin/user_profile') 
 
