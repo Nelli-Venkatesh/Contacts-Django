@@ -1,1 +1,38 @@
 {% extends 'simplelogin/base.html' %}
+{% block content %}
+	<div class="container">
+		<div>
+			<div class="jumbotron col-md-6 col-offset-3">
+			<form action="/simplelogin/edit_user_profile/" method="POST">	
+				{% csrf_token %}
+				
+				<div class="col-md-4">First Name :</div>
+				<div class="col-md-8">
+					<input class="form-control" type="text" name="first_name"  value="{{user.userprofile.first_name}}"><br>
+				</div>
+
+				<div class="col-md-4">Last name :</div>
+				<div class="col-md-8">
+					<input class="form-control" type="text" name="last_name"  value="{{user.userprofile.last_name}}"><br>
+				</div>
+				<div class="col-md-4">Email :</div>
+				<div class="col-md-8">
+					<input class="form-control" type="text" name="email" value="{{user.userprofile.email}}"><br>
+				</div>
+				
+				<div class="col-md-4">Mobile Number :</div>
+				<div class="col-md-8">
+					<input class="form-control" type="text" name="mobile_number" value="{{user.userprofile.mobile_number}}"><br>
+				</div>
+
+				<div class="col-md-6">
+                    <input class="btn btn-success" type="submit" value="save"><br>
+                </div>
+                                
+			<form>
+
+
+			</div>
+		</div>
+	</div>
+{% endblock %}

@@ -20,12 +20,13 @@
                 {% include 'simplelogin/modal_send_message.html' %}                
                 
                 <div class="navbar-form navbar-right">
+                    <a  class="btn btn-link" style="margin-right: 10%; " href="/simplelogin/logout_simple/" >logout</a>
+                </div>
+                <div class="navbar-form navbar-right">
                     <a  class="btn btn-link" style="margin-right: 10%; " href="/simplelogin/user_profile/" >User Profile</a>
                 </div>
 
-                <div class="navbar-form navbar-right">
-                    <a  class="btn btn-link" style="margin-right: 10%; " href="/simplelogin/logout_simple/" >logout</a>
-        		</div>
+                
       		</nav>
 
             {% block content %}

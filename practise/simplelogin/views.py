@@ -3,8 +3,10 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse, HttpResponseRedirect
 from simplelogin.forms import RegistrationForm
 from django.contrib.auth.decorators import login_required
-from simplelogin.models import contact_details
+from simplelogin.models import contact_details,UserProfile
 from simplelogin.forms import add_contact_form
+from django.contrib.auth.models import User
+
 
 @login_required(login_url='/simplelogin/login_simple/')
 def home_simple(request):
@@ -46,6 +48,21 @@ def edit_contact(request):
 		contact_id.save()
 		return redirect('/simplelogin/home_simple')
 	return redirect('/simplelogin/home_simple') 
+
+@login_required(login_url='/simplelogin/login_simple/')
+def edit_user_profile(request):
+	if request.method == 'POST':
+		# user=request.user
+		# UserProfile.first_name = request.POST['first_name']
+		# UserProfile.last_name = request.POST['last_name']
+		# UserProfile.email = request.POST['email']
+		# UserProfile.mobile_number = request.POST['mobile_number']
+
+		#UserProfile.save()
+		return redirect('/simplelogin/user_profile')
+	return redirect('/simplelogin/user_profile') 
+
+
 
 def reg_simple(request):
 	if request.method == 'POST':
