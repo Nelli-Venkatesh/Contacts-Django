@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from simplelogin.models import contact_details
+from simplelogin.models import contact_details,messages
 
 class RegistrationForm(UserCreationForm):
 	#email = forms.EmailField(required=True)
@@ -34,3 +34,13 @@ class edit_contact_form(forms.ModelForm):
 	class Meta:
 		model = contact_details
 		fields =('contact_name','contact_number','contact_image')#should be tuple if one element is there then add ',' at the end of it
+
+# class send_message_form(forms.ModelForm):
+# 	message_sender = forms.IntegerField(required=True)
+# 	message_reciever = forms.CharField(required=True)
+# 	message_data = forms.CharField(required=True)
+
+# 	class Meta:
+# 		model = messages
+# 		fields =('message_sender','message_reciever','message_data')
+

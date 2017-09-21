@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse, HttpResponseRedirect
 from simplelogin.forms import RegistrationForm
 from django.contrib.auth.decorators import login_required
-from simplelogin.models import contact_details,UserProfile
+from simplelogin.models import contact_details,UserProfile,messages
 from simplelogin.forms import add_contact_form
 from django.contrib.auth.models import User
 
@@ -11,6 +11,7 @@ from django.contrib.auth.models import User
 @login_required(login_url='/simplelogin/login_simple/')
 def home_simple(request):
 	object_list = contact_details.objects.filter(user=request.user)
+	#print(object_list)
 	return render(request,"simplelogin/home.html",{'object_list': object_list})
 
 def login_simple(request):
@@ -49,17 +50,22 @@ def edit_contact(request):
 		return redirect('/simplelogin/home_simple')
 	return redirect('/simplelogin/home_simple') 
 
+
 @login_required(login_url='/simplelogin/login_simple/')
 def edit_user_profile(request):
 	if request.method == 'POST':
-		profile = UserProfile.objects.get(pk=request.POST['id_userprofile'])
-		profile.first_name = request.POST['first_name']
-		profile.last_name = request.POST['last_name']
-		profile.email = request.POST['email']
-		profile.mobile_number = request.POST['mobile_number']
-		#print(request.POST['first_name'])
-		profile.save()
-		return redirect('/simplelogin/user_profile')
+		print(request.POST['id_userprofile'])
+		try:	
+			profile = UserProfile.objects.get(pk=request.POST['id_userprofile'])
+			profile.first_name = request.POST['first_name']
+			profile.last_name = request.POST['last_name']
+			profile.email = request.POST['email']
+			profile.mobile_number = request.POST['mobile_number']
+			#print(request.POST['first_name'])
+			profile.save()
+		except:
+			pass
+			return redirect('/simplelogin/user_profile')
 	return redirect('/simplelogin/user_profile') 
 
 
@@ -98,5 +104,28 @@ def logout_simple(request):
 	logout(request)
 	return render(request, 'simplelogin/login.html')
 
+@login_required(login_url='/simplelogin/login_simple/')
 def user_profile(request):
 	return render(request,'simplelogin/user_profile.html')
+
+
+def send_message(request):
+	if request.method == 'POST':
+		sender_id = User.objects.get(pk = request.POST['id_user'])
+		message_data = request.POST['message_data']
+		reciever_id = User.objects.get(username = request.POST['messge_reciever'])
+
+		message = messages(message_data=message_data,message_sender=sender_id,message_reciever=reciever_id)
+		message.save()
+
+		# print(sender_id) #prints sender username
+		# print(message_data) #prints message
+		# print(reciever_id) #prints reciever username
+
+	return redirect('/simplelogin/home_simple') 
+
+@login_required(login_url='/simplelogin/login_simple/')
+def user_messages(request):
+	message_objects_list = messages.objects.filter(message_reciever = request.user )
+	#print(message_objects_list)
+	return render(request,'simplelogin/user_messages.html',{'message_objects_list': message_objects_list})

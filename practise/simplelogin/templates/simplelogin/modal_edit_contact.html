@@ -14,14 +14,23 @@
                 <form method="POST" action="/simplelogin/edit_contact/" enctype="multipart/form-data">
                     {% csrf_token %}
                     <div class="row">
+                        
                         <div class="col-md-6">
+                            
                             {% if contact_details.contact_image %}
+                            
                             <img id="contact_image_preview_output_{{contact_details.id}}" src="{{contact_details.contact_image.url}}" class="img-thumbnail" style="height:128px;width:128px;">
+                            
                             {% else %}
-                            <img src= {% static "simplelogin/img/default_user.png" %} class="img-thumbnail" style="height:128px;width:128px;">
+                            
+                            <img id="contact_image_preview_output_{{contact_details.id}}" src= {% static "simplelogin/img/default_user.png" %} class="img-thumbnail" style="height:128px;width:128px;">
+                            
                             {% endif %}
-                            <input type="file" name="contact_image" id="imageUpload{{contact_details.id}}" accept="image/*" onchange="loadFile_edit(event)"  class="hide">
-                            <label for="imageUpload{{contact_details.id}}" class="btn btn-primary glyphicon glyphicon-folder-open"></label>
+
+                            <input type="file" name="contact_image" id="contact_imageUpload_{{contact_details.id}}" accept="image/*" onchange="document.getElementById('contact_image_preview_output_{{contact_details.id}}').src = window.URL.createObjectURL(this.files[0])"  class="hide">
+                            
+                            <label for="contact_imageUpload_{{contact_details.id}}" class="btn btn-primary glyphicon glyphicon-folder-open"></label>
+
                         </div>
                         
                         <div class="col-md-6">
@@ -45,10 +54,3 @@
     </div>
 </div>
                             <!--Modal form end-->
-
-<script>
-  var loadFile_edit = function(event) {
-    var output = document.getElementById('contact_image_preview_output_{{contact_details.id}}');
-    output.src = URL.createObjectURL(event.target.files[0]);
-  };
-</script>

@@ -11,5 +11,7 @@ urlpatterns = [
     url(r'^reg_simple/$',views.reg_simple,name="reg_simple"),
     url(r'^logout_simple/$', views.logout_simple, name='logout_simple'),
     url(r'^user_profile/$',views.user_profile,name='user_profile'),
-    url(r'^edit_user_profile/$',views.edit_user_profile,name='edit_user_profile')
+    url(r'^edit_user_profile/$',views.edit_user_profile,name='edit_user_profile'),
+    url(r'^send_message/$',views.send_message,name='send_message'),
+    url(r'^user_messages/$',views.user_messages,name='user_messages'),
     ]

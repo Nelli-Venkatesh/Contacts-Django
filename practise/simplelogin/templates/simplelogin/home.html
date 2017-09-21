@@ -32,9 +32,10 @@
 
                                     <div class="btn-ground text-center">
                                         <div class="col-md-6">
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#edit_contact_data{{contact_details.id}}" ><span class="glyphicon glyphicon-pencil"></span></button>    
-                                    {% include 'simplelogin/modal_edit_contact.html' %}
-                                    </div>
+                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#edit_contact_data{{contact_details.id}}" ><span class="glyphicon glyphicon-pencil"></span></button>    
+                                            {% include 'simplelogin/modal_edit_contact.html' %}
+                                        </div>
+
                                         <div class="col-md-6">
                                             <form method="post" action="/simplelogin/delete_contact/" >
                                                 {% csrf_token %}
@@ -43,8 +44,11 @@
                                                 <div style="padding:10px 0px;"></div>
                                             </form>
                                         </div>
+                                        
                                         <div style="padding:10px 0px;"></div>
+                                        
                                     </div>
+
                                 </div>
                             </div>
                             {% endfor %}

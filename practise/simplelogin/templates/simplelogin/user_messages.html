@@ -1,0 +1,30 @@
+{% extends 'simplelogin/base.html' %}
+
+{% block content %}
+<div class="row">
+	<div class="col-md-6 col-md-offset-3">
+		<div class="jumbotron" style="background-color:#99ddff">
+			{% if message_objects_list %}
+				{% for message_object in message_objects_list %}
+					<div class="panel panel-default">
+  						
+  						<div class="panel-heading" style="background-color:#80ff80">
+    						<h3 class="panel-title " >{{message_object.message_sender}}</h3>
+  						</div>
+  						
+  						<div class="panel-body">
+  							{{message_object.message_data}}
+    					</div>
+
+					</div>
+
+					<!-- <p>{{message_object.message_reciever.userprofile.mobile_number}}</p> -->
+				{% endfor %}
+			{% else %}
+				<p>No Messages</p>
+			{% endif %}
+			</div>
+	</div>
+</div>
+
+{% endblock %}

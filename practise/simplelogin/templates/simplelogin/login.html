@@ -8,7 +8,10 @@
 
 	<form  method="POST" action="/simplelogin/my_view/" enctype="multipart/form-data">
 		{% csrf_token %}
-		<h5 style="color:green">{{reg_success_text}}</h5>
+		{% if reg_success_text %}
+			<h5 class="alert alert-success">{{reg_success_text}}</h5>
+		{% endif %}
+		
 		Username:<br>
 		<input class="form-control" type="text" name="username"><br>
 		Password:<br>

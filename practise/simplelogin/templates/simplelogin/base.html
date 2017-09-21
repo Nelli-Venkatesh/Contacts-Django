@@ -6,26 +6,36 @@
         <link href= {% static "simplelogin/css/bootstrap.min.css" %} rel="stylesheet" type="text/css">
     </head>
     <body >
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
         <div class="container">
 
             <!--Navigation bar-->
 			<nav class="navbar navbar-light bg-light" style="background-color:#99ddff;" >
-          		<a class="navbar-brand" href="#" style="color:white";>Hello {{ user.get_full_name }}</a>
+          		<a class="navbar-brand" href="#" style="color:white";>Hello {{ user.userprofile.first_name }} {{ user.userprofile.last_name }}</a>
         		
                 <div class="navbar-form navbar-right">
                     <a  class="btn btn-link" style="margin-right: 10%; " href="/simplelogin/logout_simple/" >logout</a>
                 </div>
                 <div class="navbar-form navbar-right">
-                    <a  class="btn btn-link" style="margin-right: 10%; " href="/simplelogin/user_profile/" >User Profile</a>
+                    <a  class="btn btn-link"  href="/simplelogin/user_profile/" >User Profile</a>
                 </div>
 
                 <div class="navbar-form navbar-right">
-                <button type="button" class="btn btn-link" data-toggle="modal" data-target="#send_message" >Message</button>
+                <a href="/simplelogin/user_messages/" type="button" class="btn btn-link">Messages</a>
+                </div>
+
+                <div class="navbar-form navbar-right">
+                <button type="button" class="btn btn-link" data-toggle="modal" data-target="#send_message" >Send Message</button>
                 </div>
 
                 <div class="navbar-form navbar-right">
                 <button type="button" class="btn btn-link" data-toggle="modal" data-target="#add_contact_data" >Add Contact</button>
+                </div>
+                
+                <div class="navbar-form navbar-left">
+                <a class="btn btn-link"  href="/simplelogin/home_simple/" >Home</a>
                 </div>
                 
                 {% include 'simplelogin/add_modal_contact.html' %}                
@@ -39,6 +49,7 @@
 
 
         </div>
+                
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
