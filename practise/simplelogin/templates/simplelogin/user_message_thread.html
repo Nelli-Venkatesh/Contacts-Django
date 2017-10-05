@@ -5,8 +5,9 @@
 	<div class="col-md-8 col-md-offset-2">			
 		<div class="jumbotron">
 			<h3>{{sender_id}}</h3>
-			<div class="jumbotron pre-scrollable" style="background-color:#99ddff">
+			<div class="jumbotron pre-scrollable" id ='scroll_box' style="background-color:#99ddff">
 				<div class="row">
+					
 					{% if message_objects_list %}
 						{% for message_object in message_objects_list %}
 							{% if message_object.message_sender.id == user.id %}
@@ -55,5 +56,10 @@
 		</div>		
 	</div>
 </div>
+
+<script type="text/javascript">
+	var scroll_box_object = document.getElementById("scroll_box");
+	scroll_box_object.scrollTop = scroll_box_object.scrollHeight;
+</script>
 
 {% endblock %}
