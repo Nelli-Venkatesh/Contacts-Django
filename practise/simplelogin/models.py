@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator
 from django.db.models.signals import post_save
+from django.utils import timezone
 
 
 class contact_details(models.Model):
@@ -35,7 +36,7 @@ class messages(models.Model):
 	message_sender = models.ForeignKey(User,related_name ='message_sender')
 	message_reciever = models.ForeignKey(User,related_name='reciever')
 	message_data = models.CharField(max_length = 140)
-	#message_date = models.DateTimeField(auto_now_add=True)
+	message_date = models.DateTimeField(default=timezone.now)
 
 	def __str__(self):
 		return self.message_data

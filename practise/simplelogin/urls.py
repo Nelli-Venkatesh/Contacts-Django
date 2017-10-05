@@ -14,4 +14,7 @@ urlpatterns = [
     url(r'^edit_user_profile/$',views.edit_user_profile,name='edit_user_profile'),
     url(r'^send_message/$',views.send_message,name='send_message'),
     url(r'^user_messages/$',views.user_messages,name='user_messages'),
+    url(r'^send_message_by_number/$',views.send_message_by_number,name='send_message_by_number'),
+    url(r'^user_message_thread/$',views.user_message_thread,name='user_message_thread'),
+    url(r'^send_message_by_thread/$',views.send_message_by_thread,name='send_message_by_thread')
     ]

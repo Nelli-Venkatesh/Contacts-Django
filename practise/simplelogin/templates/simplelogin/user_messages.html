@@ -3,28 +3,70 @@
 {% block content %}
 <div class="row">
 	<div class="col-md-6 col-md-offset-3">
+		
 		<div class="jumbotron" style="background-color:#99ddff">
-			{% if message_objects_list %}
-				{% for message_object in message_objects_list %}
-					<div class="panel panel-default">
-  						
-  						<div class="panel-heading" style="background-color:#80ff80">
-    						<h3 class="panel-title " >{{message_object.message_sender}}</h3>
-  						</div>
-  						
-  						<div class="panel-body">
-  							{{message_object.message_data}}
-    					</div>
 
+			{% if user_objects_list%}
+				{% for user in user_objects_list %}
+					<div class="thumbnail ">
+						<form action = '/simplelogin/user_message_thread/' method='POST'>                
+                			{% csrf_token %}
+    							<input class='hide' name ='message_sender' value = {{user.id}} >
+    							<input class="btn btn-link" type="submit" value={{user}} >
+						</form>
 					</div>
+				{%endfor %}
+			{% else %}
+				<p>No Messages </p>
+			{% endif %}
 
-					<!-- <p>{{message_object.message_reciever.userprofile.mobile_number}}</p> -->
+<!-- 			{% if message_objects_list %}			
+				{% for message_object in message_objects_list %}
+					<div class="panel panel-default" >  						
+  							<div class="panel-heading" style="background-color:#80ff80">
+    							<h3 class="panel-title ">{{message_object.message_sender}}</h3>
+    							<h6 class="nav nav-right">{{message_object.message_date}}</h6>
+  							</div>
+  							
+  							<div class="panel-body">
+  							{{message_object.message_data}}
+    						</div>
+    						{{message_object.message_sender.id}}
+    						<form action = '/simplelogin/user_message_thread/' method='POST'>                
+                				{% csrf_token %}
+    							<input class='hide' name ='message_sender' value = {{message_object.message_sender.id}} >
+    							<input class="btn btn-link" type="submit" value="View Details" >
+							</form>
+					</div>
+					<p>{{message_object.message_reciever.userprofile.mobile_number}}</p> 
 				{% endfor %}
 			{% else %}
 				<p>No Messages</p>
 			{% endif %}
-			</div>
+ -->
+		</div>
+
+<!-- 
+
+		<div class="jumbotron" style="background-color:#99ddff">
+			{% if message_objects_list %}
+				{% for message_object in message_objects_list %}
+					<div class="panel panel-default">  						
+  						<div class="panel-heading" style="background-color:#80ff80">
+    						<h3 class="panel-title " >{{message_object.message_sender}}</h3>
+  						</div>  						
+  						<div class="panel-body">
+  							{{message_object.message_data}}
+    					</div>
+					</div>
+					 <p>{{message_object.message_reciever.userprofile.mobile_number}}</p>
+				{% endfor %}
+			{% else %}
+				<p>No Messages</p>
+			{% endif %}
+		</div> -->
+
 	</div>
 </div>
 
-{% endblock %}
+{% endblock %} 

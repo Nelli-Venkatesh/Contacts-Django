@@ -30,26 +30,40 @@
                                         <h4>{{contact_details.contact_number}}</h4>
                                     </div>
 
-                                    <div class="btn-ground text-center">
-                                        <div class="col-md-6">
-                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#edit_contact_data{{contact_details.id}}" ><span class="glyphicon glyphicon-pencil"></span></button>    
+                                    <div class="caption text-center">
+                                    
+                                    <div class="row">
+
+                                        {% for item in mobile_number_list %}
+                                        {% if contact_details.contact_number == item.mobile_number %}
+
+                                        <div class="col-md-4" style="padding-right:0;">
+                                            <button type="button" class="btn btn-link" data-toggle="modal" data-target="#send_message_by_number{{contact_details.id}}" ><span class="glyphicon glyphicon-send"></span></button>
+                                            {% include 'simplelogin/send_message_by_number.html' %}
+                                                
+                                        </div>
+
+                                        {% endif %}
+                                        {% endfor %}
+
+                                        <div class="col-md-4" style="padding:0;">
+                                            <button type="button" class="btn btn-link" data-toggle="modal" data-target="#edit_contact_data{{contact_details.id}}" ><span class="glyphicon glyphicon-pencil"></span></button>    
                                             {% include 'simplelogin/modal_edit_contact.html' %}
                                         </div>
 
-                                        <div class="col-md-6">
+                                        <div class="col-md-4" style="padding-left:0;">
                                             <form method="post" action="/simplelogin/delete_contact/" >
                                                 {% csrf_token %}
                                                 <input name="id_contact" value="{{contact_details.id}}"class="hide">
-                                                <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-trash"></span></button>                             
-                                                <div style="padding:10px 0px;"></div>
+                                                <button type="submit" class="btn btn-link"><span class="glyphicon glyphicon-trash"></span></button>                        
                                             </form>
                                         </div>
-                                        
-                                        <div style="padding:10px 0px;"></div>
-                                        
-                                    </div>
 
+                                        <div style="padding:10px 0px;"></div>
+                                    </div>
+                                    </div>
                                 </div>
+
                             </div>
                             {% endfor %}
                             {% else %}

@@ -8,7 +8,8 @@
 				<form method="POST" action="/simplelogin/reg_simple/">
 					{% csrf_token %}
 					<h3>Registration From</h3><br>
-
+					
+					<h5 class="alert alert-danger" >{{invalid_credentials}}</h5><br>
 					<div class="col-md-4">
 						E-mail:
 					</div>
@@ -31,7 +32,6 @@
 					</div><br>
 					<input type="submit" value="Register" class="btn btn-default">
 				</form>
-				<h5 style="color: red">{{invalid_credentials}}</h5><br>
 			</div>
 		</div>
 	</div>

@@ -1,0 +1,59 @@
+{% extends 'simplelogin/base.html' %}
+
+{% block content %}
+<div class="row">
+	<div class="col-md-8 col-md-offset-2">			
+		<div class="jumbotron">
+			<h3>{{sender_id}}</h3>
+			<div class="jumbotron pre-scrollable" style="background-color:#99ddff">
+				<div class="row">
+					{% if message_objects_list %}
+						{% for message_object in message_objects_list %}
+							{% if message_object.message_sender.id == user.id %}
+
+								<div class="thumbnail col-md-8 col-md-offset-4"  >				
+  									<h5 class="text-primary">{{message_object.message_data}}</h5>
+								</div>
+
+							{% else %}
+
+								<div class="thumbnail col-md-8 " >
+  									<h5 class="text-primary">{{message_object.message_data}}</h5>
+								</div>
+					
+							{% endif %}
+							<!-- <p>{{message_object.message_reciever.userprofile.mobile_number}}</p> -->
+						{% endfor %}
+					{% else %}
+						<p>No Messages</p>
+					{% endif %}
+				</div>	
+			</div>
+
+			<form method="POST" action="/simplelogin/send_message_by_thread/" enctype="multipart/form-data">
+                {% csrf_token %}
+                
+                <input name="id_user" value="{{user.id}}" class="hide">
+                
+                <div class="row">
+
+                    <div class="col-md-12">
+						<input type="text" name="message_reciever" value="{{sender_number}}" class="hide">
+						<input type="text" name="sender_id" value="{{sender_id}}" class="hide">
+                    </div>      
+                        
+                    <div class="col-md-10">
+                        <input class="form-control" type="text-area" name="message_data" placeholder=" enter message" ><br>
+                    </div>
+
+                    <div class="col-md-2 ">
+                        <input class="btn btn-success" type="submit" value="send"><br>
+                    </div>                                
+                            
+                </div>
+            </form>
+		</div>		
+	</div>
+</div>
+
+{% endblock %}

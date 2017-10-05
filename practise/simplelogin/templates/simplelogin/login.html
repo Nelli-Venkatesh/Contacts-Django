@@ -12,6 +12,11 @@
 			<h5 class="alert alert-success">{{reg_success_text}}</h5>
 		{% endif %}
 		
+
+		{% if message_invalid %}
+			<h5 class="alert alert-danger">{{message_invalid}}</h5>
+		{% endif %}
+
 		Username:<br>
 		<input class="form-control" type="text" name="username"><br>
 		Password:<br>
