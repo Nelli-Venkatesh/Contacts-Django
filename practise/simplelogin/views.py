@@ -197,6 +197,8 @@ def user_message_thread(request):
 		return render(request,'simplelogin/user_message_thread.html',{'message_objects_list':message_objects_list,
 			'sender_id':sender_id,
 			'sender_number':sender_number})
+	else:
+		return redirect('/simplelogin/user_message_thread/')
 	return render(request,'simplelogin/user_message_thread.html')
 
 
